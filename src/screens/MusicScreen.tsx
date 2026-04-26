@@ -10,7 +10,7 @@ interface Props {
 
 // Drop the .mp3 here at  public/song.mp3  (or change this path).
 const SONG_SRC = '/song.mp3';
-const SONG_TITLE = 'song for you ♥';
+const SONG_TITLE = 'our song hihi ♥';
 
 // Photos pinned around the player. Drop matching files in /public.
 interface PhotoPin {
