@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Press Start 2P', system-ui, monospace;
+  background: #1a1426;
+  color: #fff;
+  overflow: hidden;
+}
+
+img, svg {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Layered pastel cloud background reused by many screens */
+.bg-clouds {
+  background:
+    radial-gradient(ellipse 220px 90px at 12% 78%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(ellipse 260px 100px at 78% 70%, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0) 65%),
+    radial-gradient(ellipse 200px 80px at 50% 88%, rgba(255, 220, 235, 0.85) 0%, rgba(255, 220, 235, 0) 60%),
+    radial-gradient(ellipse 140px 60px at 28% 30%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, #c7b6ec 0%, #d6c4f0 35%, #f4c8da 70%, #ffd6c7 100%);
+}
+
+.bg-parchment {
+  background:
+    radial-gradient(ellipse at top, rgba(120, 80, 40, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(120, 80, 40, 0.18) 0%, transparent 50%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 80, 40, 0.04) 0px,
+      rgba(120, 80, 40, 0.04) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    linear-gradient(180deg, #f4e3b8 0%, #ecd49a 100%);
+}
+
+/* Hard pixel text shadow stack */
+.pixel-shadow {
+  text-shadow:
+    2px 0 0 #c2367c,
+    -2px 0 0 #c2367c,
+    0 2px 0 #c2367c,
+    0 -2px 0 #c2367c,
+    2px 2px 0 #c2367c,
+    -2px -2px 0 #c2367c,
+    2px -2px 0 #c2367c,
+    -2px 2px 0 #c2367c,
+    4px 4px 0 #6a1c47;
+}
+
+.pixel-shadow-light {
+  text-shadow:
+    1px 0 0 #ff6fa3,
+    -1px 0 0 #ff6fa3,
+    0 1px 0 #ff6fa3,
+    0 -1px 0 #ff6fa3,
+    2px 2px 0 #c2367c;
+}
+
+/* Scanline overlay used inside the monitor */
+.scanlines {
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* Heart-shaped clip path for numpad keys */
+.heart-shape {
+  clip-path: path('M16 28 C 4 20, 0 12, 6 6 C 10 2, 14 4, 16 8 C 18 4, 22 2, 26 6 C 32 12, 28 20, 16 28 Z');
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Pretty pink scrollbars inside the monitor */
+.pretty-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.pretty-scroll::-webkit-scrollbar-track {
+  background: #ffe6ef;
+}
+.pretty-scroll::-webkit-scrollbar-thumb {
+  background: #ff6fa3;
+  border: 2px solid #ffe6ef;
+}
