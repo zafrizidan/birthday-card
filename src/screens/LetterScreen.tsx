@@ -94,9 +94,9 @@ export default function LetterScreen({ onBack }: Props) {
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 2.4, ease: 'easeInOut' }}
             >
-              <PixelEnvelope size={420} />
+              <PixelEnvelope size={520} />
             </motion.div>
-            <div className="mt-6 font-pixel text-[12px] text-pinksoft pixel-shadow text-center tracking-widest">
+            <div className="mt-8 font-pixel text-[14px] text-pinksoft pixel-shadow text-center tracking-widest">
               click to open
             </div>
           </motion.button>
@@ -107,7 +107,7 @@ export default function LetterScreen({ onBack }: Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.45 }}
-            className="relative z-10 w-full max-w-[760px] h-full max-h-[440px] bg-parchment border-[4px] border-[#8a6a3a] shadow-[6px_6px_0_#3d2b1f]"
+            className="relative z-10 w-full max-w-[920px] h-full max-h-[560px] bg-parchment border-[4px] border-[#8a6a3a] shadow-[6px_6px_0_#3d2b1f]"
           >
             {/* paper holes / decorations top */}
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex gap-3">
@@ -116,8 +116,8 @@ export default function LetterScreen({ onBack }: Props) {
               <div className="w-4 h-4 bg-pinkdeep border-2 border-[#5e1f3b]" />
             </div>
 
-            <div className="h-full overflow-y-auto pretty-scroll px-10 py-8">
-              <div className="font-pixel text-[10px] text-[#3d2b1f] leading-[2] whitespace-pre-line">
+            <div className="h-full overflow-y-auto pretty-scroll px-12 py-10">
+              <div className="font-pixel text-[12px] text-[#3d2b1f] leading-[2] whitespace-pre-line">
                 {LETTER}
               </div>
             </div>
