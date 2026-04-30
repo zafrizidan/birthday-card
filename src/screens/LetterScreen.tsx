@@ -9,17 +9,19 @@ interface Props {
 
 const LETTER = `Happy Birthday to the most amazing person in the world!
 
-You make every day brighter with your smile, every moment sweeter with your love, and my life so much happier just by being in it. I feel so lucky to have you by my side, and I can't wait for all the adventures, laughter, and memories we'll share this year.
+You make every day brighter with your smile, every moment sweeter with your love, and honestly (not even joking) my life has been so much happier since i met you and you've changed everything for the better. I am so lucky to have met someone like you and to have you by my side, and I can't wait for all the adventures, laughter, and memories we'll make together.
 
-I love you more than words can ever express, and I hope your birthday is as incredible as you are. May this year bring you everything you've ever wished for — sunny mornings, cozy evenings, ridiculous inside jokes, and a heart full of joy.
+I love you more than words can ever express (wallahi), and I hope your birthday is as incredible as you are. May this year bring you everything you've ever wished for — to be happier, a new job (InshaAllah), good memories, ridiculous inside jokes hahah, and a heart full of joy. I wish you nothing but the best in life and I cant wait to be a part of it all with you.
 
-Thank you for being patient, kind, and the best teammate I could ever ask for. Thank you for the late-night talks, the silly dances, the shared snacks, and the warm hugs that fix every bad day.
+Thank you for being patient, kind, and the best partner I could ever ask for. Thank you for the late-night talks, the silly dances, the shared food, and the warm hugs that make me feel so loved. Also thank you for accepting me for who I am, I genuinely cannot express how much i love and appreciate you for this because my heart was crying when you said that by me having Thalassemia makes u wanna take care and love me even more. 
 
-Today, the whole world should pause to celebrate you. So make a wish, blow out the candles, and know that I'm cheering for every single one of your dreams. I'll be right here, holding your hand, every step of the way.
+Thank you for loving me even on my worst days, and for always believing in me. You genuinely inspire me to be a better person every single day, and I am so grateful to have you in my life.
 
-Happy Birthday, love. You are my favourite human.
+Today, it's your special day. So make a wish, blow out the candles, and know that I'm cheering for every single one of your dreams. I'll be right here, by your side, holding your hand, every step of the way.
 
-Forever yours, 💌`;
+Happy Birthday, Siti Muyassarah Az-Zafirah. I love you.
+
+Forever yours truly, Your one and only Zidan :) 💌`;
 
 function PixelEnvelope({ size = 360 }: { size?: number }) {
   // grid: 32 wide x 22 tall
