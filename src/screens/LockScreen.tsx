@@ -66,7 +66,7 @@ export default function LockScreen({ onUnlock }: Props) {
       <div className="relative w-1/2 overflow-hidden flex items-end justify-center pb-8">
         <SkyBackdrop />
         <div className="relative z-10">
-          <CharacterImage src="/couple.png" alt="us" height={460} crop="full" />
+          <CharacterImage src="/couple.png" alt="us" height={600} crop="full" />
         </div>
 
         {/* heart sparkles on top of the sky */}

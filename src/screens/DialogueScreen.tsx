@@ -26,7 +26,7 @@ export default function DialogueScreen({ onNext }: Props) {
 
       {/* character + bubble grouped and centered */}
       <div className="relative z-10 flex items-end gap-8 mb-12">
-        <CharacterImage src="/boy.png" alt="him" height={500} crop="full" />
+        <CharacterImage src="/boy.png" alt="him" height={640} crop="full" />
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -47,7 +47,7 @@ export default function DialogueScreen({ onNext }: Props) {
             {/* inner cream triangle, inset so the pink edge stays as a 4px border */}
             <polygon points="6,11 20,4 20,18" fill="#ffeaf2" />
           </svg>
-          <div className="font-pixel text-[16px] text-[#5e1f3b] leading-[1.7]">
+          <div className="font-pixel text-[18px] text-[#5e1f3b] leading-[1.7]">
             <Typewriter
               text="Hi sayang, I have some gifts for you. Dont worry, these are not your actual birthday gifts hehe."
               speed={45}

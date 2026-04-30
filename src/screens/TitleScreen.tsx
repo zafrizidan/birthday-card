@@ -41,7 +41,7 @@ export default function TitleScreen({ onStart }: Props) {
             <HeartSprite size={24} />
           </div>
           <div>
-            <CharacterImage src="/title.png" alt="title character" height={460} crop="full" />
+            <CharacterImage src="/title.png" alt="title character" height={600} crop="full" />
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default function TitleScreen({ onStart }: Props) {
           initial={{ scale: 0.7, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, type: 'spring', stiffness: 180, damping: 14 }}
-          className="font-pixel text-pinksoft pixel-shadow text-[56px] leading-[1.25] mb-10"
+          className="font-pixel text-pinksoft pixel-shadow text-[68px] leading-[1.25] mb-10"
           style={{ textAlign: 'center' }}
         >
           HAPPY

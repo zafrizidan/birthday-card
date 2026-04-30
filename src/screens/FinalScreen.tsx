@@ -48,7 +48,7 @@ export default function FinalScreen({ onReplay }: Props) {
 
       {/* centered girl + bubble group */}
       <div className="relative z-10 flex items-end gap-8 mb-10">
-        <CharacterImage src="/boy.png" alt="him" height={520} crop="full" />
+        <CharacterImage src="/boy.png" alt="him" height={660} crop="full" />
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -73,7 +73,7 @@ export default function FinalScreen({ onReplay }: Props) {
               borderRight: '10px solid #ffeaf2',
             }}
           />
-          <div className="font-pixel text-[16px] text-[#5e1f3b] leading-[1.7]">
+          <div className="font-pixel text-[18px] text-[#5e1f3b] leading-[1.7]">
             That's all the gifts that i have for you <br /> (for now) hehe. <br /> <br /> Happiest of birthdays my love! <br /> Enjoy your birthday!!!! <br /> <br /> Cant wait to see you soon, I love you sayang! ♥
           </div>
         </motion.div>

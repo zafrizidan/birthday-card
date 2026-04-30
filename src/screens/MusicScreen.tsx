@@ -28,28 +28,28 @@ const PHOTOS: PhotoPin[] = [
   {
     src: '/lookbook1.png',
     caption: 'best dressed crew',
-    style: { top: '8%', left: '20%' },
+    style: { top: '8%', left: '18%' },
     rotate: -8,
-    width: 170,
-    height: 200,
+    width: 230,
+    height: 270,
     tape: 'top-center',
   },
   {
     src: '/lookbook2.png',
     caption: 'looking sharp',
-    style: { top: '10%', right: '5%' },
+    style: { top: '10%', right: '4%' },
     rotate: 7,
-    width: 150,
-    height: 210,
+    width: 210,
+    height: 290,
     tape: 'top-left',
   },
   {
     src: '/lookbook3.png',
     caption: 'matcha o’clock',
-    style: { bottom: '10%', left: '7%' },
+    style: { bottom: '8%', left: '5%' },
     rotate: 5,
-    width: 180,
-    height: 200,
+    width: 240,
+    height: 270,
     tape: 'top-right',
   },
 ];
@@ -111,16 +111,20 @@ function PolaroidPhoto({ pin }: { pin: PhotoPin }) {
 export default function MusicScreen({ onBack }: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressRef = useRef<HTMLDivElement | null>(null);
+  const volumeRef = useRef<HTMLDivElement | null>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [current, setCurrent] = useState(0);
   const [duration, setDuration] = useState(0);
   const [scrubbing, setScrubbing] = useState(false);
+  const [volume, setVolume] = useState(0.7);
+  const [adjustingVolume, setAdjustingVolume] = useState(false);
 
   // Build the audio element once on mount
   useEffect(() => {
     const audio = new Audio(SONG_SRC);
     audio.preload = 'metadata';
+    audio.volume = 0.7;
     audioRef.current = audio;
 
     const onTime = () => setCurrent(audio.currentTime);
@@ -202,6 +206,42 @@ export default function MusicScreen({ onBack }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrubbing, duration]);
 
+  const setVolumeFromClientX = (clientX: number) => {
+    const bar = volumeRef.current;
+    if (!bar) return;
+    const rect = bar.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    setVolume(pct);
+    if (audioRef.current) audioRef.current.volume = pct;
+  };
+
+  const onVolPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    setAdjustingVolume(true);
+    setVolumeFromClientX(e.clientX);
+  };
+
+  useEffect(() => {
+    if (!adjustingVolume) return;
+    const onMove = (e: PointerEvent) => setVolumeFromClientX(e.clientX);
+    const onUp = () => setAdjustingVolume(false);
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    return () => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
+  }, [adjustingVolume]);
+
+  const toggleMute = () => {
+    if (volume > 0) {
+      setVolume(0);
+      if (audioRef.current) audioRef.current.volume = 0;
+    } else {
+      setVolume(0.7);
+      if (audioRef.current) audioRef.current.volume = 0.7;
+    }
+  };
+
   const progress = duration > 0 ? (current / duration) * 100 : 0;
 
   return (
@@ -241,11 +281,11 @@ export default function MusicScreen({ onBack }: Props) {
             }
             className="origin-bottom"
           >
-            <PixelCat size={120} />
+            <PixelCat size={150} />
           </motion.div>
 
           {/* player card */}
-          <div className="bg-pinkblush border-[4px] border-pinkdeep shadow-[6px_6px_0_#5e1f3b] p-5 w-[440px]">
+          <div className="bg-pinkblush border-[4px] border-pinkdeep shadow-[6px_6px_0_#5e1f3b] p-5 w-[480px]">
             {/* title bar */}
             <div className="flex items-center justify-between mb-4 border-b-2 border-pinkmid pb-2">
               <div className="font-pixel text-[8px] text-pinkdeep">♪ Now Playing</div>
@@ -340,6 +380,34 @@ export default function MusicScreen({ onBack }: Props) {
               <span className="w-12 text-center">play / pause</span>
               <span className="w-10 text-center">stop</span>
               <span className="w-10 text-center">+10s</span>
+            </div>
+
+            {/* volume slider */}
+            <div className="flex items-center gap-3 mt-4 pt-3 border-t-2 border-pinkmid">
+              <button
+                onClick={toggleMute}
+                aria-label={volume === 0 ? 'unmute' : 'mute'}
+                className="font-pixel text-[10px] text-pinkdeep w-7 text-center active:translate-y-[1px]"
+              >
+                {volume === 0 ? '🔇' : volume < 0.5 ? '🔈' : '🔊'}
+              </button>
+              <div
+                ref={volumeRef}
+                onPointerDown={onVolPointerDown}
+                className="relative flex-1 h-3 bg-pinksoft border-2 border-pinkdeep cursor-pointer touch-none select-none"
+              >
+                <div
+                  className="absolute top-0 left-0 h-full bg-pinkdeep"
+                  style={{ width: `${volume * 100}%` }}
+                />
+                <div
+                  className="absolute top-1/2 -translate-y-1/2 w-2 h-4 bg-white border-2 border-pinkdeep shadow-[1px_1px_0_#5e1f3b]"
+                  style={{ left: `calc(${volume * 100}% - 4px)` }}
+                />
+              </div>
+              <div className="font-pixel text-[8px] text-pinkdeep w-8 text-right tracking-wider">
+                {Math.round(volume * 100)}
+              </div>
             </div>
           </div>
         </div>
