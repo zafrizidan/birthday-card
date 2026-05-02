@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PixelButton from '../components/PixelButton';
 import SkyBackdrop from '../components/SkyBackdrop';
 import { GiftSprite, PixelArrow, StarSprite } from '../components/PixelCharacter';
+import { useIsLargeScreen } from '../hooks/useViewport';
 import type { GiftId } from '../types';
 
 interface Props {
@@ -20,6 +21,7 @@ const gifts: { id: GiftId; color: 'pink' | 'lavender' | 'cream' }[] = [
 export default function GiftChoiceScreen({ opened, onPick, onAllOpened }: Props) {
   const [bursting, setBursting] = useState<GiftId | null>(null);
   const allOpened = opened.size === 3;
+  const big = useIsLargeScreen();
 
   const handlePick = (id: GiftId) => {
     if (opened.has(id) || bursting) return;
@@ -33,7 +35,7 @@ export default function GiftChoiceScreen({ opened, onPick, onAllOpened }: Props)
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 font-pixel text-pinksoft pixel-shadow text-[40px] mb-4"
+        className="relative z-10 font-pixel text-pinksoft pixel-shadow text-[32px] 2xl:text-[40px] mb-4"
       >
         Choose Your Gifts
       </motion.div>
@@ -41,7 +43,7 @@ export default function GiftChoiceScreen({ opened, onPick, onAllOpened }: Props)
         opened {opened.size} / 3
       </div>
 
-      <div className="relative z-10 flex gap-20 items-end">
+      <div className="relative z-10 flex gap-12 2xl:gap-20 items-end">
         {gifts.map(({ id, color }) => {
           const isOpen = opened.has(id);
           const isBurst = bursting === id;
@@ -61,7 +63,7 @@ export default function GiftChoiceScreen({ opened, onPick, onAllOpened }: Props)
                 }
                 className={isOpen ? 'opacity-50' : ''}
               >
-                <GiftSprite color={color} size={200} />
+                <GiftSprite color={color} size={big ? 200 : 160} />
               </motion.div>
 
               {/* burst sparkles */}

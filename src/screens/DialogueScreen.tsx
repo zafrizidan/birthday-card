@@ -4,6 +4,7 @@ import Typewriter from '../components/Typewriter';
 import CharacterImage from '../components/CharacterImage';
 import SkyBackdrop from '../components/SkyBackdrop';
 import { HeartSprite, PixelArrow } from '../components/PixelCharacter';
+import { useIsLargeScreen } from '../hooks/useViewport';
 
 interface Props {
   onNext: () => void;
@@ -11,6 +12,7 @@ interface Props {
 
 export default function DialogueScreen({ onNext }: Props) {
   const [done, setDone] = useState(false);
+  const big = useIsLargeScreen();
 
   return (
     <div className="absolute inset-0 overflow-hidden flex items-end justify-center">
@@ -26,13 +28,13 @@ export default function DialogueScreen({ onNext }: Props) {
 
       {/* character + bubble grouped and centered */}
       <div className="relative z-10 flex items-end gap-8 mb-12">
-        <CharacterImage src="/boy.png" alt="him" height={640} crop="full" />
+        <CharacterImage src="/boy.png" alt="him" height={big ? 640 : 500} crop="full" />
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="relative bg-pinkblush border-[4px] border-pinkdeep px-7 py-6 mb-64 max-w-md"
+          className="relative bg-pinkblush border-[4px] border-pinkdeep px-7 py-6 mb-48 2xl:mb-64 max-w-md"
         >
           {/* single bordered tail rendered as one SVG so it can't read as a duplicate */}
           <svg
@@ -47,7 +49,7 @@ export default function DialogueScreen({ onNext }: Props) {
             {/* inner cream triangle, inset so the pink edge stays as a 4px border */}
             <polygon points="6,11 20,4 20,18" fill="#ffeaf2" />
           </svg>
-          <div className="font-pixel text-[18px] text-[#5e1f3b] leading-[1.7]">
+          <div className="font-pixel text-[15px] 2xl:text-[18px] text-[#5e1f3b] leading-[1.7]">
             <Typewriter
               text="Hi sayang, I have some gifts for you. Dont worry, these are not your actual birthday gifts hehe."
               speed={45}

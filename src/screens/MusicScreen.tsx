@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import PixelButton from '../components/PixelButton';
 import SkyBackdrop from '../components/SkyBackdrop';
 import { HeartSprite, PixelCat, StarSprite } from '../components/PixelCharacter';
+import { useIsLargeScreen } from '../hooks/useViewport';
 
 interface Props {
   onBack: () => void;
@@ -24,7 +25,7 @@ interface PhotoPin {
   tape?: 'top-left' | 'top-right' | 'top-center';
 }
 
-const PHOTOS: PhotoPin[] = [
+const PHOTOS_LG: PhotoPin[] = [
   {
     src: '/lookbook1.png',
     caption: 'best dressed crew',
@@ -50,6 +51,38 @@ const PHOTOS: PhotoPin[] = [
     rotate: 5,
     width: 240,
     height: 270,
+    tape: 'top-right',
+  },
+];
+
+// Tighter sizes & corner-pinned positions so photos don't crash into the
+// centered player on iPad-class viewports (1180x820 landscape).
+const PHOTOS_SM: PhotoPin[] = [
+  {
+    src: '/lookbook1.png',
+    caption: 'best dressed crew',
+    style: { top: '12%', left: '2%' },
+    rotate: -8,
+    width: 170,
+    height: 200,
+    tape: 'top-center',
+  },
+  {
+    src: '/lookbook2.png',
+    caption: 'looking sharp',
+    style: { top: '10%', right: '2%' },
+    rotate: 7,
+    width: 160,
+    height: 220,
+    tape: 'top-left',
+  },
+  {
+    src: '/lookbook3.png',
+    caption: 'matcha o’clock',
+    style: { bottom: '6%', left: '2%' },
+    rotate: 5,
+    width: 180,
+    height: 200,
     tape: 'top-right',
   },
 ];
@@ -119,6 +152,8 @@ export default function MusicScreen({ onBack }: Props) {
   const [scrubbing, setScrubbing] = useState(false);
   const [volume, setVolume] = useState(0.7);
   const [adjustingVolume, setAdjustingVolume] = useState(false);
+  const big = useIsLargeScreen();
+  const photos = big ? PHOTOS_LG : PHOTOS_SM;
 
   // Build the audio element once on mount
   useEffect(() => {
@@ -265,7 +300,7 @@ export default function MusicScreen({ onBack }: Props) {
       </div>
 
       {/* photos pinned around the player */}
-      {PHOTOS.map((p) => (
+      {photos.map((p) => (
         <PolaroidPhoto key={p.src} pin={p} />
       ))}
 
@@ -281,11 +316,11 @@ export default function MusicScreen({ onBack }: Props) {
             }
             className="origin-bottom"
           >
-            <PixelCat size={150} />
+            <PixelCat size={big ? 150 : 110} />
           </motion.div>
 
           {/* player card */}
-          <div className="bg-pinkblush border-[4px] border-pinkdeep shadow-[6px_6px_0_#5e1f3b] p-5 w-[480px]">
+          <div className={`bg-pinkblush border-[4px] border-pinkdeep shadow-[6px_6px_0_#5e1f3b] p-5 ${big ? 'w-[480px]' : 'w-[400px]'}`}>
             {/* title bar */}
             <div className="flex items-center justify-between mb-4 border-b-2 border-pinkmid pb-2">
               <div className="font-pixel text-[8px] text-pinkdeep">♪ Now Playing</div>

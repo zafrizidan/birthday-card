@@ -3,6 +3,7 @@ import PixelButton from '../components/PixelButton';
 import CharacterImage from '../components/CharacterImage';
 import SkyBackdrop from '../components/SkyBackdrop';
 import { HeartSprite, StarSprite } from '../components/PixelCharacter';
+import { useIsLargeScreen } from '../hooks/useViewport';
 
 interface Props {
   onReplay: () => void;
@@ -11,6 +12,7 @@ interface Props {
 const HEART_COUNT = 16;
 
 export default function FinalScreen({ onReplay }: Props) {
+  const big = useIsLargeScreen();
   return (
     <div className="absolute inset-0 overflow-hidden flex items-end justify-center">
       <SkyBackdrop />
@@ -48,13 +50,13 @@ export default function FinalScreen({ onReplay }: Props) {
 
       {/* centered girl + bubble group */}
       <div className="relative z-10 flex items-end gap-8 mb-10">
-        <CharacterImage src="/boy.png" alt="him" height={660} crop="full" />
+        <CharacterImage src="/boy.png" alt="him" height={big ? 660 : 510} crop="full" />
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="relative bg-pinkblush border-[4px] border-pinkdeep px-7 py-6 mb-32 max-w-md"
+          className="relative bg-pinkblush border-[4px] border-pinkdeep px-7 py-6 mb-20 2xl:mb-32 max-w-md"
         >
           {/* tail pointing toward girl */}
           <div
@@ -73,7 +75,7 @@ export default function FinalScreen({ onReplay }: Props) {
               borderRight: '10px solid #ffeaf2',
             }}
           />
-          <div className="font-pixel text-[18px] text-[#5e1f3b] leading-[1.7]">
+          <div className="font-pixel text-[15px] 2xl:text-[18px] text-[#5e1f3b] leading-[1.7]">
             That's all the gifts that i have for you <br /> (for now) hehe. <br /> <br /> Happiest of birthdays my love! <br /> Enjoy your birthday!!!! <br /> <br /> Cant wait to see you soon, I love you sayang! ♥
           </div>
         </motion.div>

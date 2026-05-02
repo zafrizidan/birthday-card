@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PixelButton from '../components/PixelButton';
 import SkyBackdrop from '../components/SkyBackdrop';
+import { useIsLargeScreen } from '../hooks/useViewport';
 
 interface Props {
   onBack: () => void;
@@ -73,6 +74,7 @@ function PixelEnvelope({ size = 360 }: { size?: number }) {
 
 export default function LetterScreen({ onBack }: Props) {
   const [opened, setOpened] = useState(false);
+  const big = useIsLargeScreen();
 
   return (
     <div className="absolute inset-0 overflow-hidden flex items-center justify-center p-8">
@@ -96,9 +98,9 @@ export default function LetterScreen({ onBack }: Props) {
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 2.4, ease: 'easeInOut' }}
             >
-              <PixelEnvelope size={520} />
+              <PixelEnvelope size={big ? 520 : 400} />
             </motion.div>
-            <div className="mt-8 font-pixel text-[14px] text-pinksoft pixel-shadow text-center tracking-widest">
+            <div className="mt-8 font-pixel text-[12px] 2xl:text-[14px] text-pinksoft pixel-shadow text-center tracking-widest">
               click to open
             </div>
           </motion.button>
@@ -109,7 +111,7 @@ export default function LetterScreen({ onBack }: Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.45 }}
-            className="relative z-10 w-full max-w-[920px] h-full max-h-[560px] bg-parchment border-[4px] border-[#8a6a3a] shadow-[6px_6px_0_#3d2b1f]"
+            className="relative z-10 w-full max-w-[760px] 2xl:max-w-[920px] h-full max-h-[480px] 2xl:max-h-[560px] bg-parchment border-[4px] border-[#8a6a3a] shadow-[6px_6px_0_#3d2b1f]"
           >
             {/* paper holes / decorations top */}
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex gap-3">
@@ -118,8 +120,8 @@ export default function LetterScreen({ onBack }: Props) {
               <div className="w-4 h-4 bg-pinkdeep border-2 border-[#5e1f3b]" />
             </div>
 
-            <div className="h-full overflow-y-auto pretty-scroll px-12 py-10">
-              <div className="font-pixel text-[12px] text-[#3d2b1f] leading-[2] whitespace-pre-line">
+            <div className="h-full overflow-y-auto pretty-scroll px-10 py-8 2xl:px-12 2xl:py-10">
+              <div className="font-pixel text-[10px] 2xl:text-[12px] text-[#3d2b1f] leading-[2] whitespace-pre-line">
                 {LETTER}
               </div>
             </div>

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import PixelButton from '../components/PixelButton';
 import SkyBackdrop from '../components/SkyBackdrop';
 import { HeartSprite, StarSprite } from '../components/PixelCharacter';
+import { useIsLargeScreen } from '../hooks/useViewport';
 
 interface Props {
   onBack: () => void;
@@ -83,6 +84,8 @@ const PHOTOS: PolaroidPlacement[] = [
 ];
 
 export default function GalleryScreen({ onBack }: Props) {
+  const big = useIsLargeScreen();
+  const scale = big ? 1 : 0.78;
   return (
     <div className="absolute inset-0 overflow-hidden">
       <SkyBackdrop />
@@ -103,7 +106,7 @@ export default function GalleryScreen({ onBack }: Props) {
 
       {/* title strip */}
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
-        <div className="font-pixel text-pinksoft pixel-shadow text-[28px]">
+        <div className="font-pixel text-pinksoft pixel-shadow text-[22px] 2xl:text-[28px]">
           Museum of Us
         </div>
       </div>
@@ -123,8 +126,8 @@ export default function GalleryScreen({ onBack }: Props) {
               src={p.src}
               caption={p.caption}
               rotate={p.rotate}
-              width={p.width}
-              height={p.height}
+              width={Math.round((p.width ?? 160) * scale)}
+              height={Math.round((p.height ?? 160) * scale)}
               delay={p.delay}
             />
           </div>

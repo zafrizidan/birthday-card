@@ -4,6 +4,7 @@ import HeartButton from '../components/HeartButton';
 import CharacterImage from '../components/CharacterImage';
 import SkyBackdrop from '../components/SkyBackdrop';
 import { HeartSprite } from '../components/PixelCharacter';
+import { useIsLargeScreen } from '../hooks/useViewport';
 
 const PASSCODE = '0220';
 
@@ -16,6 +17,7 @@ export default function LockScreen({ onUnlock }: Props) {
   const [shake, setShake] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const big = useIsLargeScreen();
 
   const submit = useCallback(
     (entered: string) => {
@@ -66,7 +68,7 @@ export default function LockScreen({ onUnlock }: Props) {
       <div className="relative w-1/2 overflow-hidden flex items-end justify-center pb-8">
         <SkyBackdrop />
         <div className="relative z-10">
-          <CharacterImage src="/couple.png" alt="us" height={600} crop="full" />
+          <CharacterImage src="/couple.png" alt="us" height={big ? 600 : 460} crop="full" />
         </div>
 
         {/* heart sparkles on top of the sky */}
