@@ -73,8 +73,8 @@ interface PolaroidPlacement {
 }
 
 const PHOTOS: PolaroidPlacement[] = [
-  { src: '/photo1.png', caption: 'us :)', top: '14%', left: '4%', rotate: -8, width: 220, height: 220, delay: 0.0 },
-  { src: '/photo2.png', caption: 'first date', top: '10%', left: '28%', rotate: 5, width: 200, height: 260, delay: 0.08 },
+  { src: '/photo2.png', caption: 'first date (look how shy i am HAHAH)', top: '14%', left: '4%', rotate: -8, width: 220, height: 220, delay: 0.0 },
+  { src: '/photo1.png', caption: 'us now hihi :)', top: '10%', left: '28%', rotate: 5, width: 200, height: 260, delay: 0.08 },
   { src: '/photo3.png', caption: 'sunset walk', top: '18%', left: '50%', rotate: -4, width: 230, height: 200, delay: 0.16 },
   { src: '/photo4.png', caption: 'our first pic together', top: '12%', left: '76%', rotate: 7, width: 200, height: 220, delay: 0.24 },
   { src: '/photo5.png', caption: 'our first photobooth', top: '54%', left: '3%', rotate: 6, width: 210, height: 210, delay: 0.32 },
